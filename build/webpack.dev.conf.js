@@ -13,7 +13,13 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+//页面对象
+var entry = {
+  app: './example/main.js'
+}
+
 const devWebpackConfig = merge(baseWebpackConfig, {
+  entry: entry,
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
   },
@@ -54,7 +60,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: './example/index.html',
       inject: true
     }),
     // copy custom static assets
