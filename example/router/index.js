@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Button from 'example/pages/button'
+
+//webpackChunkName为chunkFilename: '[name].[chunkhash:8].js'中的[name]
+const Button = () => import(/* webpackChunkName: 'button' */'example/pages/button')
 
 Vue.use(Router)
 

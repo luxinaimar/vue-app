@@ -27,6 +27,8 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
+    //异步加载的模块是要以文件形式加载，生成的文件名是以chunkFilename配置的
+    chunkFilename: '[name].[chunkhash:8].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
@@ -35,8 +37,9 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': resolve('src'),
+      'example': resolve('example'),
       'common': resolve('src/common'),
-      'example': resolve('example')
+      'components': resolve('src/components')
     }
   },
   module: {
