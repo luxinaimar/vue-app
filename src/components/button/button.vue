@@ -75,7 +75,12 @@ export default {
 <style lang="less">
 @import "~common/less/variable";
 @import "~common/less/mixin";
-
+.btn-active(@bg, @border:@bg){
+    &.cube-btn_active, &:active{
+      background: @bg;
+      .border-1px(@border);
+    }
+}
 .ccm-btn{
   display: block;
   margin: 0;
@@ -93,11 +98,45 @@ export default {
   box-sizing: border-box;
   border-radius: 2px;
   -webkit-tap-highlight-color: transparent;
+  .btn-active(@btn-active-bgc, @btn-active-bdc);
   &.ccm-btn_disabled,
   &.ccm-btn_disabled.ccm-btn_active,
-  &ccm-btn_disabled:active{
-
+  &.ccm-btn_disabled:active{
+    color: @btn-disabled-color;
+    background: @btn-disabled-bgc;
+    .border-1px(@btn-disabled-bdc);
   }
 }
 
+.ccm-btn-inline{
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+  padding: 9px 10px;
+  font-size: @fontsize-small;
+}
+.ccm-btn-primary{
+  color: @btn-primary-color;
+  background: @btn-primary-bgc;
+  .border-1px(@btn-primary-bdc);
+  .btn-active(@btn-primary-active-bgc, @btn-primary-active-bdc);
+}
+.ccm-btn-outline{
+  color: @btn-outline-color;
+  background: @btn-outline-bgc;
+  .border-1px(@btn-outline-bdc);
+  .btn-active(@btn-outline-active-bgc, @btn-outline-active-bdc);
+}
+.ccm-btn-outline-primary{
+  color: @btn-outline-primary-color;
+  background: @btn-outline-primary-bgc;
+  .border-1px(@btn-outline-primary-bdc);
+  .btn-active(@btn-outline-primary-active-bgc, @btn-outline-primary-active-bdc);
+}
+.ccm-btn-light{
+  color: @btn-light-color;
+  background: @btn-light-bgc;
+  box-shadow: @box-shadow-content;
+  .btn-active(@btn-light-active-bgc, @btn-light-active-bdc);
+}
 </style>

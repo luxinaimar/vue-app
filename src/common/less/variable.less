@@ -1,21 +1,28 @@
-// 颜色定义规范
-@color-background : #222;
-@color-background-d : rgba(0, 0, 0, 0.3);
-@color-highlight-background : #333;
-@color-dialog-background : #666;
-@color-theme : #ffcd32;
-@color-theme-d : rgba(255, 205, 49, 0.5);
-@color-sub-theme : #d93f30;
-@color-text : #fff;
-@color-text-d : rgba(255, 255, 255, 0.3);
-@color-text-l : rgba(255, 255, 255, 0.5);
-@color-text-ll : rgba(255, 255, 255, 0.8);
-
 //颜色
 @color-white : #FFFFFF;
 @color-regular-blue : #4a4c5b;
 @color-orange : #fc9153;
 @color-background : #f3f4f5;
+//// gray
+@color-dark-grey : #333;
+@color-grey : #666;
+@color-light-grey : #999;
+@color-light-grey-s : #ccc;
+@color-light-grey-ss : #eee;
+@color-light-grey-sss : #fcfcfc;
+@color-active-grey : #e8e8e8;
+
+@color-dark-grey-opacity : rgba(74, 76, 91, 0.8);
+@color-grey-opacity : rgba(0, 0, 0, .08);
+@color-light-grey-opacity : rgba(0, 0, 0, .04);
+
+//// orange
+@color-dark-orange : #e8864c;
+@color-light-orange : #fdc2a5;
+@color-orange-opacity : rgba(252, 145, 83, .08);
+@color-light-orange-opacity : rgba(252, 145, 83, .04);
+//// blue
+@color-blue : #444654;
 
 //字体定义规范
 @fontsize-large-xxxx : 30px;
@@ -30,6 +37,40 @@
 // radius-size
 @radius-size-medium : 5px;
 
+// box-shadow
+@box-shadow-content : 0 1px 3px rgba(0, 0, 0, .1);
+
 // button
 @btn-color : @color-white;
 @btn-bgc : @color-regular-blue;
+@btn-disabled-color : @color-white;
+@btn-bdc : @color-regular-blue;
+@btn-active-bgc : @color-blue;
+@btn-active-bdc : @color-blue;
+@btn-disabled-bgc : @color-light-grey-s;
+@btn-disabled-bdc : @color-light-grey-s;
+
+/// primary
+@btn-primary-color : @color-white;
+@btn-primary-bgc : @color-orange;
+@btn-primary-bdc : @color-orange;
+@btn-primary-active-bgc : @color-dark-orange;
+@btn-primary-active-bdc : @color-dark-orange;
+/// light
+@btn-light-color : @color-grey;
+@btn-light-bgc : @color-light-grey-sss;
+@btn-light-bdc : @color-light-grey-sss;
+@btn-light-active-bgc : @color-active-grey;
+@btn-light-active-bdc : @color-active-grey;
+/// outline
+@btn-outline-color : @color-grey;
+@btn-outline-bgc : transparent;
+@btn-outline-bdc : @color-grey;
+@btn-outline-active-bgc : @color-grey-opacity;
+@btn-outline-active-bdc : @color-grey;
+/// outline-primary
+@btn-outline-primary-color : @color-orange;
+@btn-outline-primary-bgc : transparent;
+@btn-outline-primary-bdc : @color-orange;
+@btn-outline-primary-active-bgc : @color-orange-opacity;
+@btn-outline-primary-active-bdc : @color-dark-orange;

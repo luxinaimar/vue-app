@@ -2,6 +2,12 @@
   <div class="ccm-page">
   	<div class="wrapper">
       <ccm-button>按钮</ccm-button>
+      <ccm-button :disabled="true">按钮</ccm-button>
+      <ccm-button :inline="true">inline按钮</ccm-button>
+      <ccm-button :primary="true">primary按钮</ccm-button>
+      <ccm-button :outline="true">outline按钮</ccm-button>
+      <ccm-button :primary="true" :outline="true">primary-outline按钮</ccm-button>
+       <ccm-button :light="true">light按钮</ccm-button>
     </div>
   </div>
 </template>
