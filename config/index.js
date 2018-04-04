@@ -40,7 +40,7 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    cssSourceMap: false
   },
 
   build: {
@@ -73,6 +73,7 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
   },
+  //example Build
   demoBuild: {
     index: path.resolve(__dirname, '../dist/index.html'),
     entry: {
@@ -82,6 +83,7 @@ module.exports = {
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
     assetsRoot: path.resolve(__dirname, '../docs/example'),
+    assetsPublicPath: '/',
     assetsSubDirectory: ''
   }
 }
