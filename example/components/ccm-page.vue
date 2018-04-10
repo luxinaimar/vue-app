@@ -1,5 +1,5 @@
 <template>
-  <div class="ccm-page">
+  <div class="ccm-page" :class="type">
     <div class="wrapper">
       <main class="content">
         <slot name="content"></slot>
@@ -10,7 +10,10 @@
 <script>
 export default {
   props: {
-
+    type: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>
