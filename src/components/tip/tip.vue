@@ -1,16 +1,20 @@
 <template>
-  <div class="ccm-tip" :data-dir="direction" v-show="isVisible" @click="handleClick">
-    <i class="ccm-tip-angle" ref="angle"></i>
-    <div class="ccm-tip-content">
-      <slot></slot>
+  <transition name="ccm-tip-zoom">
+    <div class="ccm-tip" :data-dir="direction" v-show="isVisible" @click="handleClick">
+      <i class="ccm-tip-angle" ref="angle"></i>
+      <button class="ccm-tip-close ccmic-close2" @click.stop="close"></button>
+      <div class="ccm-tip-content">
+        <slot></slot>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 <script type="text/ecmascript-6">
 import apiMixin from '../../common/mixins/api'
 
 const COMPONENT_NAME = 'ccm-tip'
 const EVENT_CLICK = 'click'
+const EVENT_CLOSE = 'close'
 
 export default {
   name: COMPONENT_NAME,
@@ -99,12 +103,14 @@ export default {
     },
     close() {
       this.hide()
+      this.$emit(EVENT_CLOSE)
     }
   }
 }
 </script>
 <style lang="less">
   @import "~common/less/variable";
+  @import "~common/less/mixin";
 
   .ccm-tip{
     display: flex;
@@ -166,6 +172,19 @@ export default {
       }
     }
   }
+  .ccm-tip-close{
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    color: inherit;
+    outline: none;
+    border: none;
+    background: none;
+    transform: scale(1.3);
+  }
   .ccm-tip-angle{
     position: absolute;
     &::before{
@@ -179,6 +198,36 @@ export default {
   .ccm-tip-content{
     min-height: 18px;
     line-height: 18px;
+    .flex-fix();
     overflow: hidden;
+  }
+  .ccm-tip-zoom-enter-active{
+    animation: tip-in .4s;
+    transform: translateZ(0);
+  }
+  .ccm-tip-zoom-leave-active{
+    animation: tip-out .2s;
+    transform: translateZ(0);
+  }
+  @keyframes tip-in{
+    0%{
+      transform: scale(0);
+    }
+    50%{
+      transform: scale(1.1);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+  @keyframes tip-out{
+    from{
+      transform: scale(1);
+      opacity: 1;
+    }
+    to{
+      transform: scale(0);
+      opacity: 0;
+    }
   }
 </style>

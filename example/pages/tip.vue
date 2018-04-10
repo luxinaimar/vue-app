@@ -2,20 +2,20 @@
   <ccm-page type="tip-view">
   	<div slot="content" class="ccm-tip-list">
     <p class="tip-eg">
-        <ccm-button :inline="true" @click="$refs.tip.show()">inline按钮</ccm-button>
-        <ccm-tip ref="tip" offsetLeft="6" @click='tiptouch'>tip tip</ccm-tip>
+        <ccm-button :inline="true" @click="$refs.tip.show()">angle在上偏移6px</ccm-button>
+        <ccm-tip ref="tip" offsetLeft="1" @click='tiptouch'>tip tip</ccm-tip>
     </p>
     <p class="tip-eg">
-        <ccm-button :inline="true">inline按钮</ccm-button>
-        <ccm-tip direction="bottom" style="left:115px;top:-50px;">tip tip</ccm-tip>
+        <ccm-button :inline="true" @click="$refs.tip2.show()">angle在下手动设置style位置</ccm-button>
+        <ccm-tip ref="tip2" direction="bottom" style="left:115px;top:-50px;">tip tip</ccm-tip>
     </p>
     <p class="tip-eg">
-        <ccm-button :inline="true">inline按钮</ccm-button>
-        <ccm-tip direction="left" :offsetTop="1">tip tip</ccm-tip>
+        <ccm-button :inline="true" @click="$refs.tip3.show()">angle在左手动设置top</ccm-button>
+        <ccm-tip ref="tip3" direction="left" :offsetTop="8">tip tip</ccm-tip>
     </p>
     <p class="tip-eg">
-        <ccm-button :inline="true">inline按钮</ccm-button>
-        <ccm-tip direction="right">tip tip</ccm-tip>
+        <ccm-button :inline="true" @click="$refs.tip4.show()">angle在右</ccm-button>
+        <ccm-tip ref="tip4" direction="right">tip tip</ccm-tip>
     </p>
  	</div>
   </ccm-page>
@@ -30,7 +30,7 @@ export default {
   name: 'Tip',
   data () {
     return {
-      msg: 'tip'
+      msg: 'Tip'
     }
   },
   components: {
