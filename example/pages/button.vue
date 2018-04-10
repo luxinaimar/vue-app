@@ -2,8 +2,10 @@
   <ccm-page>
   	<div slot="content" class="ccm-button-list">
   		<ccm-button>按钮</ccm-button>
+      <ccm-button icon="ccmic-gou">按钮</ccm-button>
 	    <ccm-button :disabled="true">按钮</ccm-button>
 	    <ccm-button :inline="true">inline按钮</ccm-button>
+      <ccm-button :inline="true" icon="ccmic-gou">inline按钮</ccm-button>
 	    <ccm-button :primary="true">primary按钮</ccm-button>
 	    <ccm-button :outline="true">outline按钮</ccm-button>
 	    <ccm-button :primary="true" :outline="true">primary-outline按钮</ccm-button>

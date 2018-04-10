@@ -75,7 +75,6 @@ export default {
 <style lang="less">
   @import "~common/less/variable";
   @import "~common/less/mixin";
-
   .btn-active(@bg, @border:@bg){
       &.cube-btn_active, &:active{
         background: @bg;
@@ -99,6 +98,13 @@ export default {
     box-sizing: border-box;
     border-radius: 2px;
     -webkit-tap-highlight-color: transparent;
+    > i{
+      display: inline-block;
+      margin-right: 4px;
+      font-size: 100%;
+      transform: scale(1.13);
+      transform-origin: right center;
+    }
     .btn-active(@btn-active-bgc, @btn-active-bdc);
     &.ccm-btn_disabled,
     &.ccm-btn_disabled.ccm-btn_active,
@@ -115,6 +121,10 @@ export default {
     vertical-align: middle;
     padding: 9px 10px;
     font-size: @fontsize-small;
+    > i{
+      margin-right: 2px;
+      transform: scale(1.14);
+    }
   }
   .ccm-btn-primary{
     color: @btn-primary-color;
