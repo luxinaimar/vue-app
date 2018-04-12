@@ -1,26 +1,24 @@
 <template>
-  <ccm-page>
-  	<div slot="content" class="ccm-loading-list">
-   		<ccm-loading></ccm-loading>
-      <ccm-loading :size="28"></ccm-loading>
-      <ccm-loading :size="40"></ccm-loading>
-   	</div>
+  <ccm-page type="popup-view">
+  	<div slot="content" class="popup-test">
+      <ccm-popup content="content-content">弹出层</ccm-popup>
+    </div>
   </ccm-page>
 </template>
 
 <script>
-import CcmLoading from 'components/loading/loading'
+import CcmPopup from 'components/popup/popup'
 import CcmPage from '../components/ccm-page.vue'
 
 export default {
-  name: 'Loading',
+  name: 'Popup',
   data () {
     return {
-      msg: 'Loading'
+      msg: 'Popup'
     }
   },
   components: {
-  	CcmLoading,
+  	CcmPopup,
   	CcmPage
   }
 }

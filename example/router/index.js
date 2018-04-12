@@ -5,6 +5,8 @@ import Router from 'vue-router'
 const Button = () => import(/* webpackChunkName: 'button' */'example/pages/button')
 const Loading = () => import(/* webpackChunkName: 'loading' */'example/pages/loading')
 const Tip = () => import(/* webpackChunkName: 'tip' */'example/pages/tip')
+const Popup = () => import(/* webpackChunkName: 'popup' */'example/pages/popup')
+
 
 Vue.use(Router)
 
@@ -29,6 +31,11 @@ export default new Router({
       path: '/tip',
       name: 'tip',
       component: Tip
+    },
+    {
+      path: '/popup',
+      name: 'popup',
+      component: Popup
     }
   ]
 })
