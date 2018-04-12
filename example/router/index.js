@@ -7,7 +7,6 @@ const Loading = () => import(/* webpackChunkName: 'loading' */'example/pages/loa
 const Tip = () => import(/* webpackChunkName: 'tip' */'example/pages/tip')
 const Popup = () => import(/* webpackChunkName: 'popup' */'example/pages/popup')
 
-
 Vue.use(Router)
 
 export default new Router({
