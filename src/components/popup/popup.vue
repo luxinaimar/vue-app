@@ -1,5 +1,5 @@
 <template>
-  <div class="ccm-popup" :style="{'z-index': zIndex}" :class="typeClass" v-show="true">
+  <div class="ccm-popup" :style="{'z-index': zIndex}" :class="typeClass" v-show="isVisible">
     <div class="ccm-popup-mask" v-show="mask" @click="maskClick">
       <slot name="mask"></slot>
     </div>
