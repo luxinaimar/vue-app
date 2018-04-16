@@ -6,6 +6,7 @@ const Button = () => import(/* webpackChunkName: 'button' */'example/pages/butto
 const Loading = () => import(/* webpackChunkName: 'loading' */'example/pages/loading')
 const Tip = () => import(/* webpackChunkName: 'tip' */'example/pages/tip')
 const Popup = () => import(/* webpackChunkName: 'popup' */'example/pages/popup')
+const Slide = () => import(/* webpackChunkName: 'slide' */'example/pages/slide')
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/popup',
       name: 'popup',
       component: Popup
+    },
+    {
+      path: '/slide',
+      name: 'slide',
+      component: Slide
     }
   ]
 })
