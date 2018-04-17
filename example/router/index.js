@@ -7,6 +7,7 @@ const Loading = () => import(/* webpackChunkName: 'loading' */'example/pages/loa
 const Tip = () => import(/* webpackChunkName: 'tip' */'example/pages/tip')
 const Popup = () => import(/* webpackChunkName: 'popup' */'example/pages/popup')
 const Slide = () => import(/* webpackChunkName: 'slide' */'example/pages/slide')
+const Toast = () => import(/* webpackChunkName: 'toast' */'example/pages/toast')
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/slide',
       name: 'slide',
       component: Slide
+    },
+    {
+      path: '/toast',
+      name: 'toast',
+      component: Toast
     }
   ]
 })
