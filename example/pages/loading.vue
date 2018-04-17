@@ -1,10 +1,10 @@
 <template>
   <ccm-page>
-  	<div slot="content" class="ccm-loading-list">
+  	<template slot="content" class="ccm-loading-list">
    		<ccm-loading></ccm-loading>
       <ccm-loading :size="28"></ccm-loading>
       <ccm-loading :size="40"></ccm-loading>
-   	</div>
+   	</template>
   </ccm-page>
 </template>
 

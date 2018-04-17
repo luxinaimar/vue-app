@@ -1,7 +1,7 @@
 <template>
   <ccm-page type="slide-view">
   	<div slot="content" class="slide-container">
-    <ccm-slide :data="items" :speed="10000"></ccm-slide>
+    <ccm-slide :data="items" :speed="10000" @click="tiptouch"></ccm-slide>
  	  </div>
   </ccm-page>
 </template>
@@ -30,8 +30,8 @@ export default {
   	CcmPage
   },
   methods: {
-    tiptouch() {
-      alert(1)
+    tiptouch(item, i) {
+      alert(i)
     }
   }
 }

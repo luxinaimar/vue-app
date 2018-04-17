@@ -2,11 +2,12 @@
   <div class="ccm-slide" ref="slide">
     <div class="ccm-slide-group" ref="slideGroup">
       <slot>
-        <ccm-slide-item v-for="(item, index) in data" :key="index" :item="item"></ccm-slide-item>
+        <ccm-slide-item v-for="(item, index) in data" :key="index" :item="item" @click.native="clickItem(item, index)"></ccm-slide-item>
       </slot>
     </div>
     <div class="ccm-slide-dots">
       <slot name="dots">
+        <span :class="{active: currentPageIndex === index}" v-for="(item, index) in dots" :key="index"></span>
       </slot>
     </div>
   </div>
@@ -17,6 +18,8 @@ import CcmSlideItem from './slide-item.vue'
 import BScroll from 'better-scroll'
 
 const COMPONENT_NAME = 'ccm-slide'
+const EVENT_CHANGE = 'change'
+const EVENT_SELECT = 'click'
 
 export default {
   name: COMPONENT_NAME,
@@ -26,6 +29,10 @@ export default {
       default() {
         return []
       }
+    },
+    initialIndex: {
+      type: Number,
+      default: 0
     },
     loop: {
       type: Boolean,
@@ -46,15 +53,50 @@ export default {
     interval: {
       type: Number,
       default: 4000
+    },
+    allowVertical: {
+      type: Boolean,
+      default: false
     }
   },
-  computed: {
-
+  data() {
+    return {
+      dots: 0,
+      currentPageIndex: this.initialIndex || 0
+    }
+  },
+  created() { // 开放页面中随时修改以下属性功能
+    const needRefreshProps = ['data', 'loop', 'autoPlay', 'threshold', 'speed', 'allowVertical']
+    needRefreshProps.forEach((key) => {
+      this.$watch(key, () => {
+        this.refresh()
+      })
+    })
+  },
+  watch: {
+    initialIndex(newIndex) { // 提供用户设置起始位置
+      if (newIndex !== this.currentPageIndex) {
+        this.slide && this.slide.goToPage(newIndex)
+      }
+    }
   },
   methods: {
-    refresh() {
+    clickItem(item, index) {
+      this.$emit(EVENT_SELECT, item, index)
+    },
+    refresh() { // 开放页面中随时修改以下属性功能,每次刷新要销毁slide
+      this.slide && this.slide.destroy()
+      clearTimeout(this._timer)
       this.$nextTick(() => {
+        if (this.slide === null) {
+          return
+        }
+        if (this.slide !== undefined) {
+          this.currentPageIndex = 0
+        }
+        this.dots = 0
         this._setSlideWidth()
+        this._initDots()
         this._initSlide()
 
         if (this.autoPlay) {
@@ -86,7 +128,7 @@ export default {
         scrollY: false,
         momentum: false, // 关闭滚动动画 当快速在屏幕上滑动一段距离的时候，会根据滑动的距离和时间计算出动量，并生成滚动动画
         bounce: false, // 关闭回弹动画
-        eventPassthrough: '',
+        eventPassthrough: this.allowVertical ? 'vertical' : '',
         snap: {
           loop: this.loop, // 循环播放开关
           threshold: this.threshold, // 表示可滚动到下一个的阈值
@@ -95,6 +137,8 @@ export default {
         click: true,
         observeDOM: false
       })
+
+      this.slide.goToPage(this.currentPageIndex, 0, 0)
 
       this.slide.on('scrollEnd', this._onScrollEnd) // 绑定滚动结束事件
 
@@ -107,6 +151,9 @@ export default {
       window.removeEventListener('touchend', this._touchEndEvent, false)
       window.addEventListener('touchend', this._touchEndEvent, false)
     },
+    _initDots() {
+      this.dots = new Array(this.children.length)
+    },
     _play() {
       clearTimeout(this._timer) // touch，autoPlay等多个事件都会调用_play，所以先终止
       this._timer = setTimeout(() => {
@@ -114,6 +161,11 @@ export default {
       }, this.interval)
     },
     _onScrollEnd() {
+      let pageIndex = this.slide.getCurrentPage().pageX
+      if (this.currentPageIndex !== pageIndex) {
+        this.currentPageIndex = pageIndex
+        this.$emit(EVENT_CHANGE, this.currentPageIndex) // 动画结束时开放一个change事件给用户
+      }
       if (this.autoPlay) {
         this._play()
       }
@@ -138,11 +190,33 @@ export default {
         }
         this._refresh()
       }, 60)
+    },
+    _deactivated() {
+      clearTimeout(this._timer)
+      clearTimeout(this._resizeTimer)
+      window.removeEventListener('resize', this._resizeHandler)
+      window.removeEventListener('touchend', this._touchEndEvent, false)
     }
   },
   mounted() {
     this.refresh()
     window.addEventListener('resize', this._resizeHandler)
+  },
+  activated() {
+    if (this.autoPlay) {
+      this._play()
+    }
+    window.addEventListener('resize', this._resizeHandler)
+  },
+  deactivated() {
+    this._deactivated()
+  },
+  destroyed() {
+    this._deactivated()
+    if (this.slide) {
+      this.slide.destroy()
+      this.slide = null
+    }
   },
   components: {
     CcmSlideItem
@@ -162,5 +236,26 @@ export default {
     height: 100%;
     overflow: hidden;
     white-space: nowrap;
+  }
+  .ccm-slide-dots{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 2px;
+    font-size: 0;
+    text-align: center;
+    padding: 0 6px;
+    transform: translateZ(1px);
+    > span{
+      display: inline-block;
+      vertical-align: bottom;
+      margin: 0 1px;
+      width: 10px;
+      height: 1px;
+      background: @slide-dot-bgc;
+      &.active{
+        background: @slide-dot-active-bgc;
+      }
+    }
   }
 </style>
