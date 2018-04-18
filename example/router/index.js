@@ -9,6 +9,7 @@ const Popup = () => import(/* webpackChunkName: 'popup' */'example/pages/popup')
 const Slide = () => import(/* webpackChunkName: 'slide' */'example/pages/slide')
 const Toast = () => import(/* webpackChunkName: 'toast' */'example/pages/toast')
 const Input = () => import(/* webpackChunkName: 'input' */'example/pages/input')
+const Switch = () => import(/* webpackChunkName: 'switch' */'example/pages/switch')
 
 Vue.use(Router)
 
@@ -53,6 +54,11 @@ export default new Router({
       path: '/input',
       name: 'input',
       component: Input
+    },
+    {
+      path: '/switch',
+      name: 'switch1',
+      component: Switch
     }
   ]
 })
