@@ -172,9 +172,10 @@ export default {
     top: 0;
     bottom: 0;
     right: 0;
-    width: 1.1em;
-    height: 1.1em;
+    width: 1em;
+    height: 1em;
     padding: 10px .8em;
+    line-height: 1;
     margin: auto;
     color: @input-clear-icon-color;
     > i{
