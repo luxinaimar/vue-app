@@ -7,7 +7,14 @@
       <ccm-input placeholder="请输入"></ccm-input>
       <ccm-input placeholder="请输入" :clearable="true"></ccm-input>
       <ccm-input placeholder="密码" type="password" :eye="true"></ccm-input>
-       <ccm-input placeholder="密码" type="password" :eye="true" :clearable="true"></ccm-input>
+      <ccm-input placeholder="密码" type="password" :eye="true" :clearable="true"></ccm-input>
+      <ccm-input placeholder="密码" type="password" :eye="true" :clearable="true">
+        <a href="#" slot="append" class="send">发送验证码</a>
+      </ccm-input>
+      <ccm-input placeholder="密码" type="password" :eye="true" :clearable="true">
+        <span slot="prepend">请填写</span>
+        <a href="#" slot="append" class="send">发送验证码</a>
+      </ccm-input>
     </div>
   </ccm-page>
 </template>
@@ -33,6 +40,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
 @import "~common/less/variable";
-
+.send{
+  margin-right: 5px;
+}
 
 </style>
